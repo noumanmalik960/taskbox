@@ -1,8 +1,14 @@
 import React from "react";
-import "./App.css";
+import "./index.css";
+import { Provider } from "react-redux";
+import InboxScreen from "./components/InboxScreen";
+import { store } from "./lib/store";
 
 function App() {
-  return <div className="App">hello</div>;
+  return (
+    <Provider store={store}>
+      <InboxScreen />
+    </Provider>
+  );
 }
-
 export default App;
