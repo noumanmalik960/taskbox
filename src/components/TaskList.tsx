@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Task, { TaskType } from "./Task";
+import { pinTask, archiveTask } from "../lib/taskSlice";
 
 export interface TaskListProps {
   loading: boolean;

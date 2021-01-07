@@ -11,12 +11,12 @@ const taskSlice = createSlice({
   name: "taskReducer",
   initialState: initialState,
   reducers: {
-    onPinTask: (state, action) => {},
-    onArchiveTask: (state, action) => {},
+    pinTask: (state, action) => {},
+    archiveTask: (state, action) => {},
 
     // more reducer actions to be added here
   },
 });
 
-export const { onPinTask, onArchiveTask } = taskSlice.actions;
+export const { pinTask, archiveTask } = taskSlice.actions;
 export default taskSlice.reducer;
