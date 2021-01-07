@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Task, { TaskType } from "./Task";
 import { pinTask, archiveTask } from "../lib/taskSlice";
+import { connect } from "react-redux";
 
 export interface TaskListProps {
   loading: boolean;
@@ -9,7 +10,7 @@ export interface TaskListProps {
   onPinTask: (id: string) => void;
 }
 
-const TaskList: FC<TaskListProps> = ({
+export const PureTaskList: FC<TaskListProps> = ({
   loading,
   tasks,
   onPinTask,
@@ -68,4 +69,15 @@ const TaskList: FC<TaskListProps> = ({
   );
 };
 
-export default TaskList;
+export default connect(
+  ({ tasks }: any) => ({
+    tasks: tasks.filter(
+      (t: { state: string }) =>
+        t.state === "TASK_INBOX" || t.state === "TASK_PINNED"
+    ),
+  }),
+  (dispatch) => ({
+    onArchiveTask: (id: string) => dispatch(archiveTask(id)),
+    onPinTask: (id: string) => dispatch(pinTask(id)),
+  })
+)(PureTaskList);

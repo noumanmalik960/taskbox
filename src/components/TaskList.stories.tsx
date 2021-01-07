@@ -1,11 +1,11 @@
 import React from "react";
-import TaskList from "./TaskList";
+import TaskList, { PureTaskList } from "./TaskList";
 import { Story } from "@storybook/react/types-6-0";
 import { TaskListProps } from "./TaskList";
 
 export default {
   title: "TaskList",
-  component: TaskList,
+  component: PureTaskList,
   decorators: [
     (story: () => React.ReactNode) => (
       <div style={{ padding: "3rem" }}>{story()}</div>
@@ -13,7 +13,7 @@ export default {
   ],
 };
 
-const Template: Story<TaskListProps> = (args) => <TaskList {...args} />;
+const Template: Story<TaskListProps> = (args) => <PureTaskList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
