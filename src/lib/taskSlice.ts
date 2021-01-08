@@ -1,20 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
-  { id: "1", title: "Something", state: "TASK_INBOX" },
-  { id: "2", title: "Something more", state: "TASK_INBOX" },
-  { id: "3", title: "Something else", state: "TASK_INBOX" },
-  { id: "4", title: "Something again", state: "TASK_INBOX" },
+  { id: "1", title: "Task Inbox", state: "TASK_INBOX" },
+  { id: "2", title: "Task Archived", state: "TASK_ARCHIVED" },
+  { id: "3", title: "Task Pinned", state: "TASK_PINNED" },
+  { id: "4", title: "Task Inbox", state: "TASK_INBOX" },
 ];
 
 const taskSlice = createSlice({
   name: "taskReducer",
   initialState: initialState,
   reducers: {
-    pinTask: (state, action) => {},
-    archiveTask: (state, action) => {},
+    pinTask: (state, action) => {
+      return state.map((task) => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            state: "TASK_PINNED",
+          };
+        } else {
+          return task;
+        }
+      });
+    },
+    archiveTask: (state, action) => {
+      return state.map((task) => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            state: "TASK_ARCHIVED",
+          };
+        } else {
+          return task;
+        }
+      });
+    },
 
-    // more reducer actions to be added here
+    // We can add more reducer actions here
   },
 });
 
